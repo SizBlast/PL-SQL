@@ -1,6 +1,6 @@
-CREATE OR REPLACE PACKAGE BODY Oefening1Package IS
+CREATE OR REPLACE PACKAGE BODY Oefening1Package AS
 
-  FUNCTION geefWerknemers (p_job_id jobs.job_id) RETURN job_info AS
+  FUNCTION geefWerknemers (p_job_id jobs.job_id%TYPE) RETURN t_job_info AS
     CURSOR name_cur(p_job_id jobs.job_id%TYPE) IS
       SELECT first_name, last_name
       FROM employees
@@ -34,9 +34,9 @@ CREATE OR REPLACE PACKAGE BODY Oefening1Package IS
       WHEN exception_job_id THEN
         dbms_output.put_line(SQLERRM);
       WHEN OTHERS THEN
-        dbms_output.put_line('Er is een onbekende fout opgetreden.')
+        dbms_output.put_line('Er is een onbekende fout opgetreden.');
     
-  END;
+    END;
     
 END;
         
